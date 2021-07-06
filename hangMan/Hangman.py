@@ -1,13 +1,14 @@
 import random
 import string
-from wordlist import words
+from words import words
+
 
 
 def valid_word_check(words):
     word = random.choice(words)
     while '-' in word or ' ' in word:
         word = random.choice(words)
-    return word
+    return word.upper()
 
 
 def hangman():
@@ -23,8 +24,8 @@ def hangman():
 
         # what the current word is
         word_list = [
-            letter if letter in used_letters else '_' for letter in word]
-        print('Current word: ', ' '.join(word_list))
+            letter if letter in used_letters else '-' for letter in word]
+        print('Current word: ', ' '.join(word_list), '\n')
 
         user_letter = input('Pick a letter: ').upper()
         if user_letter in alphabet - used_letters:
@@ -36,5 +37,5 @@ def hangman():
         else:
             print('The hell is that?')
 
-
-hangman()
+if __name__ == '__main__':
+    hangman()
